@@ -1,13 +1,16 @@
 <?php 
 include('conexao.php');
-$id = $_GET['id']; //Aqui é get, já que passa pela URL
-$sql = "DELETE from fluxo_caixa WHERE id=$id";
 
+$id = $_GET['id']; // ID do registro que vai ser excluído
 
-$result = mysqli_query($con,$sql); //a variavel result vai ter o resultado, se deu certo ou n
-    if($result){
-        echo "Dados Excluidos com sucesso!<br>";}
-    else{
-        echo "Erro ao alterar dados: ".mysqli_error($con)."<br>";}
+$sql = "DELETE FROM fluxo_caixa WHERE id=$id"; // Consulta SQL para excluir o registro com o ID
+
+$result = mysqli_query($con, $sql); // Executa a consulta SQL e armazenando o resultado
+
+if($result) {
+    echo "Dados Excluídos com sucesso!<br>"; // Exibindo mensagem de sucesso se a exclusão foi bem-sucedida
+} else {
+    echo "Erro ao excluir dados: " . mysqli_error($con) . "<br>"; // Exibindo mensagem de erro se houve algum problema na exclusão
+}
 ?>
-<a href="index.php">Voltar</a>
+<a href="index.php">Voltar</a> <!-- Link para voltar à página inicial -->

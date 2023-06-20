@@ -9,40 +9,40 @@
 <body>
     <?php 
     include('conexao.php');
-    $sql = "select * FROM fluxo_caixa";
-    $result = mysqli_query($con,$sql);
-    $row = mysqli_fetch_array($result);
+
+    $sql = "SELECT * FROM fluxo_caixa"; // Consulta SQL para selecionar todos os registros da tabela fluxo_caixa
+
+    $result = mysqli_query($con, $sql); // Executando a consulta SQL e armazenando o resultado
+
+    $row = mysqli_fetch_array($result); // Obtendo a primeira linha de resultado como um array associativo
+
     ?>
-    <h1>Lista de Fluxos de Caixas</h1> 
+    <h1>Lista de Fluxos de Caixa</h1> 
     <table align="center" border="1" width="500">
+        <tr> <!-- Cabeçalho da tabela -->
             <th>CODIGO</th>
             <th>DATA</th>
             <th>TIPO</th>
             <th>VALOR</th>
             <th>HISTÓRICO</th>
             <th>CHEQUE</th>
-            <?php
-            do{
-            echo "<tr>";
-            echo "<td>".$row['id']."</td>";
-            echo "<td>".$row['data']."</td>";
-            echo "<td>".$row['tipo']."</td>";
-            echo "<td>".$row['valor']."</td>";
-            echo "<td>
-            <a href='altera_fluxo_caixa.php?id=".$row['id']."'>".$row['historico']."</a></td>";
-            echo "<td>".$row['cheque']."</td>";
-            echo "<td><a 
-            href='excluir_fluxo_caixa.php?id=".$row['id']."'>Excluir</a>
-            </td>";
-            // do while na linha atual (Como se eu pegasse o valor do contador) e usar ele
-            // como condição do WHERE do banco
-            echo "</tr>";
-        } while($row = mysqli_fetch_array($result));
-        // sempre que estiver algum registro ele vai mostrar, ou seja
-        // quando acabar os dados ele para de monstrar(uma repetição).     
+        </tr>
+        <?php
+        do {
+            echo "<tr>"; // Início de uma nova linha da tabela
+            echo "<td>" . $row['id'] . "</td>"; // Exibindo o valor da coluna 'id'
+            echo "<td>" . $row['data'] . "</td>"; // Exibindo o valor da coluna 'data'
+            echo "<td>" . $row['tipo'] . "</td>"; // Exibindo o valor da coluna 'tipo'
+            echo "<td>" . $row['valor'] . "</td>"; // Exibindo o valor da coluna 'valor'
+            echo "<td><a href='altera_fluxo_caixa.php?id=" . $row['id'] . "'>" . $row['historico'] . "</a></td>"; // Criando um link para a página de alteração com o ID do registro
+            echo "<td>" . $row['cheque'] . "</td>"; // Exibindo o valor da coluna 'cheque'
+            echo "<td><a href='excluir_fluxo_caixa.php?id=" . $row['id'] . "'>Excluir</a></td>"; // Criando um link para a página de exclusão com o ID do registro
+            echo "</tr>"; // Fim da linha da tabela
+        } while ($row = mysqli_fetch_array($result)); // Repetindo o bloco enquanto houver linhas de resultado
+        
         ?>
     </table>
     <br>
-    <a href="index.php">Voltar</a>
+    <a href="index.php">Voltar</a> <!-- Link para voltar à página inicial -->
 </body>
 </html>

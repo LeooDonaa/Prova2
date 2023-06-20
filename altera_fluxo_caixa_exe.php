@@ -1,13 +1,13 @@
 <?php 
     include('conexao.php');
 
-    // Obtendo o ID passado por parâmetro na URL
+    // Obtem o ID
     $id = $_GET['id'];
 
     // Consulta SQL para buscar os dados do fluxo de caixa com o ID especificado
     $sql = "SELECT * FROM fluxo_caixa WHERE id=$id";
 
-    // Executando a consulta SQL
+    // Executa a consulta SQL
     $result = mysqli_query($con, $sql);
 
     // Obtendo a linha de resultado da consulta
