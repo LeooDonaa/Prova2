@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Fluxo de Caixa</title>
+</head>
+<body>
+    <h1>Consulta de Fluxo de Caixa</h1>
+    <form action="Consulta_fluxo_caixa.php" method="POST">
+        <label for="tipo_consulta">Tipo de Consulta:</label>
+        <select id="tipo_consulta" name="tipo_consulta">
+            <option value="saldo_total">Saldo Total</option>
+            <option value="total_saidas">Total de Saídas</option>
+            <option value="total_entradas">Total de Entradas</option>
+        </select><br><br>
+        <input type="submit" value="Consultar">
+    </form>
+</body>
+</html>
