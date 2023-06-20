@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Fluxo de Caixa</title>
+</head>
+<body>
+    <h1>Cadastro de Fluxo de Caixa</h1>
+    <form action="Cadastro_fluxo_caixa.php" method="POST">
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required><br><br>
+
+        <label for="tipo">Tipo:</label>
+        <input type="radio" id="entrada" name="tipo" value="entrada" required>
+        <label for="entrada">Entrada</label>
+        <input type="radio" id="saida" name="tipo" value="saida" required>
+        <label for="saida">Saída</label><br><br>
+
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" name="valor" required><br><br>
+
+
+        <label for="historico">Histórico:</label>
+        <input type="text" id="historico" name="historico" required><br><br>
+
+        <label for="cheque">Cheque:</label>
+        <select id="cheque" name="cheque" required>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select><br><br>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>
