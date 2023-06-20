@@ -1,43 +1,48 @@
-<?php
-// Realizar a conexão com o banco de dados
-$servername = "nome_do_servidor";
-$username = "nome_de_usuario";
-$password = "senha";
-$database = "nome_do_banco_de_dados";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verificar a conexão com o banco de dados
-if ($conn->connect_error) {
-    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-}
-
-// Preparar a consulta SQL para selecionar os dados da tabela fluxo_caixa
-$sql = "SELECT * FROM fluxo_caixa";
-
-// Executar a consulta SQL
-$result = $conn->query($sql);
-
-// Verificar se há registros retornados
-if ($result->num_rows > 0) {
-    // Exibir os registros em uma tabela
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Data</th><th>Tipo</th><th>Valor</th><th>Histórico</th><th>Cheque</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["id"] . "</td>";
-        echo "<td>" . $row["data"] . "</td>";
-        echo "<td>" . $row["tipo"] . "</td>";
-        echo "<td>" . $row["valor"] . "</td>";
-        echo "<td>" . $row["historico"] . "</td>";
-        echo "<td>" . $row["cheque"] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "Nenhum registro encontrado.";
-}
-
-// Fechar a conexão com o banco de dados
-$conn->close();
-?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php 
+    include('conexao.php');
+    $sql = "select * FROM fluxo_caixa";
+    $result = mysqli_query($con,$sql);
+    $row = mysqli_fetch_array($result);
+    ?>
+    <h1>Lista de Fluxos de Caixas</h1> 
+    <table align="center" border="1" width="500">
+            <th>CODIGO</th>
+            <th>DATA</th>
+            <th>TIPO</th>
+            <th>VALOR</th>
+            <th>HISTÓRICO</th>
+            <th>CHEQUE</th>
+            <?php
+            do{
+            echo "<tr>";
+            echo "<td>".$row['id']."</td>";
+            echo "<td>".$row['data']."</td>";
+            echo "<td>".$row['tipo']."</td>";
+            echo "<td>".$row['valor']."</td>";
+            echo "<td>
+            <a href='altera_fluxo_caixa.php?id=".$row['id']."'>".$row['historico']."</a></td>";
+            echo "<td>".$row['cheque']."</td>";
+            echo "<td><a 
+            href='excluir_fluxo_caixa.php?id=".$row['id']."'>Excluir</a>
+            </td>";
+            // do while na linha atual (Como se eu pegasse o valor do contador) e usar ele
+            // como condição do WHERE do banco
+            echo "</tr>";
+        } while($row = mysqli_fetch_array($result));
+        // sempre que estiver algum registro ele vai mostrar, ou seja
+        // quando acabar os dados ele para de monstrar(uma repetição).     
+        ?>
+    </table>
+    <br>
+    <a href="index.php">Voltar</a>
+</body>
+</html>
